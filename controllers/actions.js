@@ -60,6 +60,13 @@ Router.post('/register',async(req,res) => {
         email:email,
         password:hash_password
     })
+    _account.save()
+    .then( result =>{
+        return res.status(200).json({
+            result: result
+        })
+    })
+    .catch(error => {console.log(error.message)})
 })
 //LOGIN
 Router.post('/login',async(req,res) => {})
