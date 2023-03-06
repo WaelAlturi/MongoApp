@@ -20,6 +20,7 @@ Router.post('/createNewCategory',async(req,res) => {
         return res.status(200).json({
             result: result
         })
+        
     })
     .catch(error => {console.log(error)})
 })
