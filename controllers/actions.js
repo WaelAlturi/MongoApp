@@ -74,22 +74,36 @@ Router.post('/login',async(req,res) => {
     const{email,password} = req.body;
     //Cheack if user exist by email 
     Account.findOne({email:email})
-    .then(account => {
+    .then(async account => {
         if(!account){
             return res.status(200).json({
                 message: 'Account Exist'
             })
         }
-        
+
+        //compare password
+        const isMatch = await bcryptjs.compare(password,account.password);
+        if(!isMatch){
+            return res.status(200).json({
+                message:'password Not Match'
+            });
+        }
+        //generate JWT token 
+        const dataToToken = {
+            id:account._id,
+            name:account.firstName+" "+account.lastName,
+            email:account.email,
+            avatar:account.avatar,
+
+        }
+        const token = await jwt.sign({dataToToken}, process.env.JWT_KEY);
+        //Response
     })
     .catch(error => {
         return res.status(500).json({
             message:error.message
         })
     })
-    //compare password
-    //generate JWT token 
-    //Response
 })
 
 
