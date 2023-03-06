@@ -1,14 +1,18 @@
 import express from "express";
 import mongoose from "mongoose";
 import actions from './controllers/actions.js'
+import dotenv from 'dotenv';
+dotenv.config();
+
+
 const  app  = express();
 
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
-const mongo_url = "mongodb+srv://TuriWael:30z3OsRDgHTmfIT1@cluster0.0qkhbet.mongodb.net/?retryWrites=true&w=majority";
+const mongo_url =process.env.MONGO_URL;
+const port = process.env.PORT;
 
-const port = 3001;
 app.use('/api',actions);
 
 mongoose.connect(mongo_url)

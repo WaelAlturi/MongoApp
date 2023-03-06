@@ -4,6 +4,9 @@ import mongoose from "mongoose";
 
 import Category from "../models/category.js";
 
+Router.get('/getCteagories',async(req,res) => {
+    
+})
 
 Router.post('/createNewCategory',async(req,res) => {
     //Create Object ID 
