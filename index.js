@@ -14,7 +14,7 @@ const mongo_url =process.env.MONGO_URL;
 const port = process.env.PORT;
 
 app.use('/api',actions);
-
+mongoose.set({'strictQuery':false})
 mongoose.connect(mongo_url)
 .then(results =>{
     console.log(results);

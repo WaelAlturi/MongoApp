@@ -1,6 +1,9 @@
 import  express from "express";
 const Router = express.Router();
 import mongoose from "mongoose";
+import bcryptjs from 'bcryptjs';
+import  jwt from "jsonwebtoken";
+import Account from "../models/Account.js";
 
 import Category from "../models/category.js";
 
@@ -32,5 +35,27 @@ Router.post('/createNewCategory',async(req,res) => {
     })
     .catch(error => {console.log(error)})
 })
+
+//AUTH FUNCTIONS 
+
+//REGISTER
+Router.post('/register',async(req,res) => {
+    //Get account info from body
+    const {firstName,lastName,email,password} = req.body;
+    //Cheak if use (email) exist
+    const isAccountExist = await Account.findOne({email:email});
+    if(isAccountExist){
+        return res.status(200).json({
+            message: 'Account Exist'
+        })
+    }
+
+    //password crypt
+    //create user in db
+
+})
+//LOGIN
+Router.post('/login',async(req,res) => {})
+
 
 export default Router;
