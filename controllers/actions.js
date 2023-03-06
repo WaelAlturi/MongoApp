@@ -49,10 +49,17 @@ Router.post('/register',async(req,res) => {
             message: 'Account Exist'
         })
     }
-
     //password crypt
+    const hash_password = await bcryptjs.hash(password,10);
     //create user in db
-
+    const id = mongoose.Types.ObjectId();
+    const _account = new Account({
+        _id: id,
+        firstName:firstName,
+        lastName:lastName,
+        email:email,
+        password:hash_password
+    })
 })
 //LOGIN
 Router.post('/login',async(req,res) => {})
