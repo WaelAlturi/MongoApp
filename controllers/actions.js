@@ -5,8 +5,8 @@ import mongoose from "mongoose";
 import Category from "../models/category.js";
 
 Router.get('/getCteagories',async(req,res) => {
-    //OPTION 1
-    const categories = await Category.find({isPublished:false});
+
+    const categories = await Category.find();
 
     res.status(200).json({
 
@@ -29,7 +29,6 @@ Router.post('/createNewCategory',async(req,res) => {
         return res.status(200).json({
             result: result
         })
-        
     })
     .catch(error => {console.log(error)})
 })
