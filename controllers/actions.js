@@ -69,7 +69,28 @@ Router.post('/register',async(req,res) => {
     .catch(error => {console.log(error.message)})
 })
 //LOGIN
-Router.post('/login',async(req,res) => {})
+Router.post('/login',async(req,res) => {
+    //Get account info from client
+    const{email,password} = req.body;
+    //Cheack if user exist by email 
+    Account.findOne({email:email})
+    .then(account => {
+        if(!account){
+            return res.status(200).json({
+                message: 'Account Exist'
+            })
+        }
+        
+    })
+    .catch(error => {
+        return res.status(500).json({
+            message:error.message
+        })
+    })
+    //compare password
+    //generate JWT token 
+    //Response
+})
 
 
 export default Router;
