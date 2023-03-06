@@ -9,7 +9,7 @@ app.use(express.json());
 const mongo_url = "mongodb+srv://TuriWael:30z3OsRDgHTmfIT1@cluster0.0qkhbet.mongodb.net/?retryWrites=true&w=majority";
 
 const port = 3001;
-app.use('/api',port);
+app.use('/api',actions);
 
 mongoose.connect(mongo_url)
 .then(results =>{
