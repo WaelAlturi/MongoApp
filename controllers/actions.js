@@ -96,8 +96,12 @@ Router.post('/login',async(req,res) => {
             avatar:account.avatar,
 
         }
-        const token = await jwt.sign({dataToToken}, process.env.JWT_KEY);
+        const token = await jwt.sign({dataToToken}, process.env.JWT_KEY,{expiresIn:'30d'});
         //Response
+        return res.status(200).json({
+            message:account,
+            token:token
+        });
     })
     .catch(error => {
         return res.status(500).json({
