@@ -4,8 +4,12 @@ import mongoose from "mongoose";
 import bcryptjs from 'bcryptjs';
 import  jwt from "jsonwebtoken";
 import Account from "../models/Account.js";
-
 import Category from "../models/category.js";
+import Auth from "./auth";
+
+Router.post('/addProduct',Auth,async(req,res) => {
+    
+})
 
 Router.get('/getCteagories',async(req,res) => {
 
