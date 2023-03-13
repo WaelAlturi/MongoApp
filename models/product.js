@@ -5,7 +5,6 @@ const productSchema = new Schema ({
     _id : mongoose.Schema.Types.ObjectId,
     associateAccount: {type: mongoose.Schema.Types.ObjectId,ref: 'Account'},
     associateCategory: {type: mongoose.Schema.Types.ObjectId,ref: 'Category'},
-
     productName: String,
     productPrice: Number,
     productDescription: String,
